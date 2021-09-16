@@ -97,5 +97,18 @@ router.get('/timeline/:userId', async (req, res) => {
         res.status(500).json({ message: "Error" });
     }
 });
+
+// get user's all posts
+router.get('/profiles/:username', async (req, res) => {
+    let postArray = [];
+    try {
+        const user = await User.findOne({ username: req.params.username });
+        const post = await Post.find({ userId: user._id });
+        res.status(200).json(post);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Error" });
+    }
+});
  
 module.exports = router;
