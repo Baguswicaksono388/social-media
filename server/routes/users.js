@@ -48,10 +48,7 @@ router.get("/:id", async (req, res) => {
     try {
         const users = await User.findById({ _id: req.params.id });
         const { password, updatedAt, ...other } = users._doc;
-        res.status(200).json({
-            message: 'Success',
-            date: other
-        });
+        res.status(200).json(other);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error" });
