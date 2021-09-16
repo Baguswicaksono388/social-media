@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 require('dotenv').config();
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cors = require('cors');
 
 mongoose.connect(process.env.MONGO_URL,
     // { useNewUrlParser: true, useUnifiedTopology: true  }
@@ -14,6 +15,15 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
     console.log("err connecting", err)
 });
+
+/*CORS*/ 
+let corsOptions = {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}
+app.use(cors(corsOptions));
 
 // middleware
 app.use(express.json());
