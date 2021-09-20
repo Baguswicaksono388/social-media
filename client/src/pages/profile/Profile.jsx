@@ -34,7 +34,7 @@ export default function Profile() {
               />
               <img
                 className="profileUserImg"
-                src={users.profilePicture || PF+"/person/7.jpeg"}
+                src={users.profilePicture ? PF + users.profilePicture : PF+"/person/7.jpeg"}
                 alt=""
               />
             </div>
