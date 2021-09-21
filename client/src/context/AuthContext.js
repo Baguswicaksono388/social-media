@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     "_id": "613ef16f5f1d133ba26fe730",
     "username": "ahmad",
     "email": "ahmad@gmail.com",
-    "profilePicture": "",
+    "profilePicture": "person/8.jpeg",
     "coverPicture": "",
     "followers": [
         "613ef0d4fb1ef12ec5bac3a8"
