@@ -11,6 +11,7 @@ export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [users, setUser] = useState({});
   const username = useParams().username;
+  // console.log(users);
   
    useEffect(() => {
     const fetchUser = async () => {
@@ -18,7 +19,7 @@ export default function Profile() {
       setUser(res.data);
     };
     fetchUser();
-  }, []);
+  }, [username]);
   return (
     <>
       <Topbar />
