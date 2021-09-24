@@ -9,8 +9,11 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import ReactGA from "react-ga";
 
 function App() {
+  ReactGA.initialize("UA-208542197-1");
+  ReactGA.pageview(window.location.pathname + window.location.search);
   const { users } = useContext(AuthContext);
   return (
     <Router>
