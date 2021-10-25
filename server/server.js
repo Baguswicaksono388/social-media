@@ -61,6 +61,8 @@ require("./models/User");
 app.use("/api/users", require('./routes/users'));
 app.use("/api/auth", require('./routes/auth'));
 app.use("/api/posts", require('./routes/post'));
+app.use("/api/conversations", require('./routes/conversation'));
+app.use("/api/messages", require('./routes/messages'));
 
 
 const PORT = process.env.PORT;
