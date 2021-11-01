@@ -9,7 +9,7 @@ import { useParams } from "react-router";
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [users, setUser] = useState({});
+  const [user, setUser] = useState({});
   const username = useParams().username;
   // console.log(users);
   
@@ -30,23 +30,23 @@ export default function Profile() {
             <div className="profileCover">
               <img
                 className="profileCoverImg"
-                src={users.coverPicture ? PF + users.coverPicture : PF+"/post/3.jpeg"}
+                src={user.coverPicture ? PF + user.coverPicture : PF+"/post/3.jpeg"}
                 alt=""
               />
               <img
                 className="profileUserImg"
-                src={users.profilePicture ? PF + users.profilePicture : PF+"/person/7.jpeg"}
+                src={user.profilePicture ? PF + user.profilePicture : PF+"/person/7.jpeg"}
                 alt=""
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">{ users.username}</h4>
-              <span className="profileInfoDesc">{users.desc }</span>
+              <h4 className="profileInfoName">{ user.username}</h4>
+              <span className="profileInfoDesc">{user.desc }</span>
             </div>
           </div>
           <div className="profileRightBottom">
             <Feed username={username} />
-            <Rightbar users={users} />
+            <Rightbar user={user} />
           </div>
         </div>
       </div>

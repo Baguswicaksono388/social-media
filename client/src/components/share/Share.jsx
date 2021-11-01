@@ -5,8 +5,8 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 export default function Share() {
-  const { users } = useContext(AuthContext);
-  console.log(users.profilePicture);
+  const { user } = useContext(AuthContext);
+  console.log(user.profilePicture);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
   const [file, setFile] = useState(null);
@@ -14,7 +14,7 @@ export default function Share() {
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
-      userId: users._id,
+      userId: user._id,
       desc:desc.current.value,
     }
 
@@ -43,9 +43,9 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img className="shareProfileImg" src={ users.profilePicture ? PF + users.profilePicture : PF +"/person/1.jpeg"} alt="" />
+          <img className="shareProfileImg" src={ user.profilePicture ? PF + user.profilePicture : PF +"/person/1.jpeg"} alt="" />
           <input
-            placeholder={"What's in your mind "+users.username+" ?"}
+            placeholder={"What's in your mind "+user.username+" ?"}
             className="shareInput"
             ref={desc}
           />

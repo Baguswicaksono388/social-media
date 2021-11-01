@@ -16,21 +16,21 @@ import ReactGA from "react-ga";
 function App() {
   ReactGA.initialize("UA-208542197-1");
   ReactGA.pageview(window.location.pathname + window.location.search);
-  const { users } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          {users ? < Home /> : <Register />}
+          {user ? < Home /> : <Register />}
         </Route>
         <Route path="/login">
-          {users ? <Redirect to="/"/> : <Login/>}
+          {user ? <Redirect to="/"/> : <Login/>}
         </Route>
         <Route path="/register">
-          {users ? <Redirect to="/"/> : <Register/>}
+          {user ? <Redirect to="/"/> : <Register/>}
         </Route>
         <Route path="/messenger">
-          {!users ? <Redirect to="/"/> : <Messenger/>}
+          {!user ? <Redirect to="/"/> : <Messenger/>}
         </Route>
         <Route path="/profile/:username">
           <Profile/>
