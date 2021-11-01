@@ -3,7 +3,7 @@ import Topbar from "../../components/topbar/Topbar"
 import Conversation from "../../components/conversations/Conversation"
 import Message from "../../components/message/Message"
 import ChatOnline from "../../components/chatOnline/ChatOnline"
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
@@ -13,6 +13,7 @@ export default function Messenger() {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const { user } = useContext(AuthContext);
+    const scrollRef = useRef(); //for automatically scroll drop down
 
     useEffect(() => {
         const getConversations = async () => {
@@ -56,6 +57,10 @@ export default function Messenger() {
         }
     }
 
+    useEffect(()=> {
+        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages])
+
     return (
         <>
         <Topbar/>
@@ -77,7 +82,9 @@ export default function Messenger() {
                     <>
                     <div className="chatBoxTop">
                         {messages.map(m=>(
-                            <Message message={m} own={m.sender === user._id}/>
+                            <div ref={scrollRef}>
+                                <Message message={m} own={m.sender === user._id}/>
+                            </div>
                         ))}
                     </div>
                     <div className="chatBoxBottom">
